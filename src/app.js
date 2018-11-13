@@ -29,7 +29,8 @@ class TodoApp extends React.Component {
 					name: 'Третья задача',
 					checked: false
 				},
-			]
+			],
+			newTodoText: ''
 		}
 	}
 
@@ -39,7 +40,7 @@ class TodoApp extends React.Component {
 				return {
 					id: todo.id,
 					name: todo.name,
-					checked: !todo.ckecked
+					checked: !todo.checked
 				}
 			} else {
 				return todo;
@@ -51,26 +52,62 @@ class TodoApp extends React.Component {
 		});
 	}
 
+	addTodo() {
+		const todos = this.state.todos;
+		let count = todos.length;
+
+		todos.push({
+			id: count++,
+			name: this.state.newTodoText,
+			checked: false
+		});
+
+		this.setState({
+			todos,
+			newTodoText: ''
+		});
+	}
+
 	render() {
-		return ( 
-			<ol> {
-				this.state.todos.map((todo) => {
-					const className = todo.checked ? 'checked' : '';
-					return ( 
-						<li key = {todo.id}
-								className = {className}
-								onClick = {
-									(e) => {
-										this.toggleTodo(todo.id);
-									}
-								} 
-						>
-							{todo.name} 
-						</li>
-					)
-				})
-			} 
-			</ol>
+		return (
+			<div> 
+				<h1>Todo List</h1>
+				<ol> {
+					this.state.todos.map((todo) => {
+						const className = todo.checked ? 'checked' : '';
+						return ( 
+							<li key = {todo.id}
+									className = {className}
+									onClick = {
+										(e) => {
+											this.toggleTodo(todo.id);
+										}
+									} 
+							>
+								{todo.name} 
+							</li>
+						)
+					})
+				} 
+				</ol>
+
+				<input
+					type="text"
+					placeholder="Добавить новую задачу"
+					value={this.state.newTodoText}
+					onChange={
+						(e) => {
+							this.setState({newTodoText: e.target.value})
+						}
+					}
+					onKeyDown={	(e) => {
+							if(e.keyCode === 13) {
+								this.addTodo();
+							}
+						}
+					}
+				/>
+			</div>
 		)
 	}
 }
