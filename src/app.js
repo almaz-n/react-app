@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TodoItem from './todo-item';
 
 //React-компонент функциональный
 const Hello = () => {
@@ -74,18 +75,13 @@ class TodoApp extends React.Component {
 				<h1>Todo List</h1>
 				<ol> {
 					this.state.todos.map((todo) => {
-						const className = todo.checked ? 'checked' : '';
-						return ( 
-							<li key = {todo.id}
-									className = {className}
-									onClick = {
-										(e) => {
-											this.toggleTodo(todo.id);
-										}
-									} 
-							>
-								{todo.name} 
-							</li>
+						return(
+							<TodoItem
+								id={todo.id}
+								name={todo.name}
+								checked={todo.checked}
+								toggleTodo={this.toggleTodo.bind(this,todo.id)} //?
+							/>
 						)
 					})
 				} 
