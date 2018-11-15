@@ -1,6 +1,6 @@
 import React from 'react';
 import TodoItem from './todo-item';
-import TodoList from './todo-list';
+import TodoInput from './todo-input';
 
 // React-компонент при помощи class
 class TodoApp extends React.Component {
@@ -106,7 +106,7 @@ class TodoApp extends React.Component {
             <div className="todo">
                 <h1>Todo List</h1>
                 
-                <TodoList
+                <TodoInput
                     newTodoText={this.state.newTodoText}
                     addTodo={this.addTodo.bind(this)}
                     handleInput={this.handleInput.bind(this)}
