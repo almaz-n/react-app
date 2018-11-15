@@ -25,7 +25,12 @@ class TodoApp extends React.Component {
 				},
 			],
 			newTodoText: ''
-		}
+        }
+        
+        this.toggleTodo = this.toggleTodo.bind(this);
+        this.deleteTodo = this.deleteTodo.bind(this);
+        this.addTodo = this.addTodo.bind(this);
+        this.handleInput = this.handleInput.bind(this);
     }
     
     handleInput(ev) {
@@ -108,8 +113,8 @@ class TodoApp extends React.Component {
                 
                 <TodoInput
                     newTodoText={this.state.newTodoText}
-                    addTodo={this.addTodo.bind(this)}
-                    handleInput={this.handleInput.bind(this)}
+                    addTodo={this.addTodo}
+                    handleInput={this.handleInput}
                 />
                 
                 <ol className="todo-list"> {
@@ -119,8 +124,8 @@ class TodoApp extends React.Component {
                                 id={todo.id}
                                 name={todo.name}
                                 checked={todo.checked}
-                                toggleTodo={this.toggleTodo.bind(this,todo.id)} //?
-                                deleteTodo={this.deleteTodo.bind(this,todo.id)}
+                                toggleTodo={this.toggleTodo} //?
+                                deleteTodo={this.deleteTodo}
                             />
                         )
                     })
