@@ -7,10 +7,14 @@ const TodoItem = (props) => {
     return ( 
         <li key = {props.id}
                 className = {className}
-                onClick = { (ev) =>  { props.toggleTodo(ev) } } 
+                onClick = { (ev) =>  { props.toggleTodo(ev,props.id) } } 
         >
             {props.name} 
-            <span className="delete" onClick = { (ev) =>  { props.deleteTodo(ev) } }>x</span>
+            <span className="delete" onClick = { 
+                (ev) =>  { 
+                    props.deleteTodo(ev,props.id) 
+                } 
+            }>x</span>
         </li>
     )
 }

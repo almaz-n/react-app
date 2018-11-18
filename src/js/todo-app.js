@@ -42,7 +42,8 @@ class TodoApp extends React.Component {
     }
 
     // пометить как сделанная/несделанная задача
-	toggleTodo(key,ev) {
+	toggleTodo(ev,key) {
+        console.log(ev);
         if (ev.target.tagName == 'LI') {  
             const todos = this.state.todos.map((todo) => {
                 if (todo.id === key) {
@@ -94,7 +95,7 @@ class TodoApp extends React.Component {
     }
     
     // удаление задачи
-    deleteTodo(key,ev) {
+    deleteTodo(ev,key) {
         if (ev.target.tagName == 'SPAN') {   
             const todos = this.state.todos.filter((todo) => {
                 return todo.id != key;
